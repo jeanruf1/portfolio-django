@@ -1,0 +1,10 @@
+/* backend/theme/static_src/src/styles.css */
+
+@import "../custom.css"; /* <-- CORRIJA PARA INCLUIR ../ */
+
+@import "tailwindcss";
+
+/**
+ * ... resto do arquivo ...
+ */
+@source "../../../**/*.{html,py,js}";

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load markdown_extras %}
+
+{% block title %}{{ project.title }} | Meu Portfólio{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"> <div class="flex justify-between items-center mb-10" data-aos="fade-down">
+        <a href="{% url 'projects:list' %}" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Ver todos os projetos
+        </a>
+        
+        {% if user.is_staff %}
+        <div class="flex items-center space-x-4">
+            <a href="{% url 'projects:update' project.slug %}" class="inline-flex items-center gap-x-2 bg-yellow-500/80 hover:bg-yellow-500 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                Editar
+            </a>
+            <a href="{% url 'projects:delete' project.slug %}" class="inline-flex items-center gap-x-2 bg-red-600/80 hover:bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                Excluir
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <header class="text-center mb-12" data-aos="fade-up">
+        <h1 class="font-serif text-5xl md:text-7xl font-bold text-white tracking-tight">{{ project.title }}</h1>
+        <div class="mt-6 flex justify-center flex-wrap gap-3">
+            {% for tech in project.tech_details|split:"," %}
+                {% if tech %}
+                <span class="bg-gray-800 text-cyan-300 text-sm font-medium px-4 py-2 rounded-full border border-gray-700">{{ tech|trim }}</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </header>
+
+    <div class="mb-16" data-aos="zoom-in" data-aos-delay="100">
+        <img src="{{ project.cover.url }}" alt="Capa do projeto {{ project.title }}"
+            class="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl shadow-black/50">
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-16">
+        <section data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-3xl font-bold text-white mb-6 border-l-4 border-cyan-400 pl-4">Sobre o Projeto</h2>
+            <div class="prose prose-invert lg:prose-xl max-w-none text-gray-300 space-y-4">
+                {{ project.description|markdownify }}
+            </div>
+        </section>
+
+        {% if project.video_url or project.video_file %}
+        <section data-aos="fade-up" data-aos-delay="300">
+            <h2 class="text-3xl font-bold text-white mb-6 border-l-4 border-cyan-400 pl-4">Demonstração em Vídeo</h2>
+            <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl bg-black">
+                {% if project.video_url %}
+                <iframe class="w-full h-full" src="{{ project.video_url|youtube_embed_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% elif project.video_file %}
+                <video controls class="w-full h-full">
+                    <source src="{{ project.video_file.url }}" type="video/mp4">
+                    Seu navegador não suporta a tag de vídeo.
+                </video>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+
+    <div class="max-w-4xl mx-auto mt-16 pt-16 border-t border-gray-800 text-center" data-aos="fade-up" data-aos-delay="400">
+        {% if project.github_url %}
+        <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Interessado no código?</h2>
+            <a href="{{ project.github_url }}" target="_blank"
+                class="inline-flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+                Acessar repositório no GitHub
+            </a>
+        </section>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

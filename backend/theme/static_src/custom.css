@@ -1,0 +1,27 @@
+
+
+body::before {
+    content: '</>';
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    font-size: 15rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.02);
+    z-index: -1;
+    transform: rotate(-15deg);
+    pointer-events: none; /* Garante que não seja clicável */
+}
+
+body::after {
+    content: '<h1>';
+    position: fixed;
+    bottom: 15%;
+    right: 5%;
+    font-size: 15rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.02);
+    z-index: -1;
+    transform: rotate(15deg);
+    pointer-events: none; /* Garante que não seja clicável */
+}

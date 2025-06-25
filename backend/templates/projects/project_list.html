@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Projetos | Meu Portfólio{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <header class="text-center mb-12" data-aos="fade-down">
+        <h1 class="text-5xl font-extrabold text-white tracking-tight">
+            Meus <span class="text-[#98FACD]">Projetos</span>
+        </h1>
+        <p class="mt-4 text-xl text-gray-400">
+            Explore os trabalhos que desenvolvi!
+        </p>
+
+        {% if user.is_staff %}
+        <div class="mt-8">
+            <a href="{% url 'projects:create' %}"
+                class="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+                + Adicionar Novo Projeto
+            </a>
+        </div>
+        {% endif %}
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
+        {% for project in projects %}
+        <a href="{% url 'projects:detail' project.slug %}"
+            class="group block bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 transform hover:-translate-y-1"
+            data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+
+            <div class="relative">
+                <img src="{{ project.cover.url }}" alt="Capa do projeto {{ project.title }}"
+                    class="w-full h-56 object-cover group-hover:opacity-75 transition-opacity duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <h2 class="absolute bottom-0 left-0 p-6 text-2xl font-bold text-white">
+                    {{ project.title }}
+                </h2>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-300 leading-relaxed">{{ project.tech_details }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <div class="col-span-full text-center py-16" data-aos="zoom-in">
+            <h3 class="text-2xl text-gray-500">Nenhum projeto publicado ainda.</h3>
+            <p class="mt-2 text-gray-400">Adicione seu primeiro projeto clicando no botão acima!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

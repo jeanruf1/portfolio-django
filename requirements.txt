@@ -1,0 +1,10 @@
+# requirements.txt
+django
+psycopg2-binary
+python-dotenv
+Pillow
+django-tailwind
+gunicorn
+dj-database-url
+markdown2
+whitenoise[brotli]

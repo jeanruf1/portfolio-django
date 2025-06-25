@@ -1,0 +1,80 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="pt-br" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Portfólio{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {% tailwind_css %}
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+
+
+</head>
+
+<body class="bg-[#111111] text-gray-300 font-sans antialiased">
+
+    <header class="w-full sticky top-0 z-50 bg-[#111111]/80 backdrop-blur-sm">
+        <div class="flex justify-between items-center py-4">
+
+            <div class="ml-4 md:ml-6 lg:ml-8">
+                <a href="{% url 'home' %}" class="text-white text-4xl font-serif font-bold">J</a>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="{% url 'home' %}"
+                    class="text-lg transition-colors {% if request.resolver_match.view_name == 'home' %}text-[#98FACD] font-bold{% else %}hover:text-white{% endif %}">
+                    Home
+                </a>
+                <a href="{% url 'about' %}"
+                    class="text-lg transition-colors {% if request.resolver_match.view_name == 'about' %}text-[#98FACD] font-bold{% else %}hover:text-white{% endif %}">
+                    Sobre mim
+                </a>
+                <a href="{% url 'projects:list' %}"
+                    class="text-lg transition-colors {% if 'projects' in request.resolver_match.app_names %}text-[#98FACD] font-bold{% else %}hover:text-white{% endif %}">
+                    Projetos
+                </a>
+
+                <div class="mr-4 md:mr-6 lg:mr-8">
+                    <a href="{% url 'contact' %}"
+                        class="bg-[#98FACD] text-black font-bold py-3 px-6 rounded-full hover:bg-white transition-all duration-300">
+                        Contate-me
+                    </a>
+                </div>
+            </nav>
+
+
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-8 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">&copy; {% now "Y" %} Jean. Todos os direitos reservados.</p>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', (event) => { hljs.highlightAll(); });
+    AOS.init({
+            duration: 800, // Duração da animação em milissegundos
+            once: true,    // A animação acontece apenas uma vez
+        });
+
+
+
+    </script>
+
+
+</body>
+
+</html>

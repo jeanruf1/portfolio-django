@@ -1,0 +1,29 @@
+# render.yaml
+# Define os serviços que compõem nosso projeto
+
+services:
+  # Serviço 1: O Banco de Dados PostgreSQL
+  - type: pserv # 'pserv' é um serviço de banco de dados PostgreSQL
+    name: portfolio-db
+    env: postgres
+    plan: free # Usa o plano gratuito do Render
+    postgresMajorVersion: 15 # Mesma versão que usamos localmente
+
+  # Serviço 2: A Aplicação Web (Django)
+  - type: web
+    name: portfolio-web
+    env: python
+    plan: free
+    # Conecta a aplicação ao banco de dados criado acima
+    database:
+      name: portfolio-db
+      username: portfolio_user # Mesmo usuário que definimos no .env
+
+    # Comandos que o Render vai executar ao construir o site
+    buildCommand: |
+      pip install --no-cache-dir -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+
+    # Comando para iniciar o servidor em produção
+    startCommand: "gunicorn portfolio_project.wsgi:application"

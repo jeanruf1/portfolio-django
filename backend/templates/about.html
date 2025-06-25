@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-4 gap-12">
+
+    <aside class="hidden lg:block lg:col-span-1">
+        <div class="sticky top-24">
+            <h3 class="text-lg font-semibold text-white mb-4 border-l-4 border-cyan-400 pl-3">Navegue pela página</h3>
+            <nav class="space-y-2">
+                <a href="#sobre"
+                    class="nav-link block p-3 rounded-md transition-colors duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    data-section="sobre">Sobre mim</a>
+                <a href="#works"
+                    class="nav-link block p-3 rounded-md transition-colors duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    data-section="works">Experiências</a>
+                <a href="#skills"
+                    class="nav-link block p-3 rounded-md transition-colors duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    data-section="skills">Habilidades</a>
+            </nav>
+        </div>
+    </aside>
+
+    <main class="lg:col-span-3">
+
+        <section id="sobre" class="mb-24 scroll-mt-24" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-white mb-6">Sobre Mim</h2>
+            <div class="prose prose-invert lg:prose-xl max-w-none space-y-4 text-gray-300">
+                <p>Sou Jean Rufino, estagiário na área de Dados e RPA no Travelex Bank.</p>
+                <p>Atuo no desenvolvimento de automações e integrações entre sistemas utilizando Python, VBA e APIs
+                    REST, com foco em eficiência operacional e robustez. Desenvolvo robôs para automação de processos
+                    como cadastros, manipulação de arquivos, disparo de rotinas e extração de dados em ambientes legados
+                    e modernos, integrando formulários dinâmicos, bases SQL e sistemas web.</p>
+                <p>Tenho experiência com bancos de dados relacionais como SQL Server, MySQL e SQLite, estruturando
+                    tabelas, criando procedures, views e otimizando consultas.</p>
+                <p>Utilizo Power BI para criação de dashboards interativos conectados a bancos e arquivos externos, e
+                    tenho familiaridade com ferramentas modernas de dados como Snowflake.</p>
+                <p>Na nuvem, possuo conhecimento e testo soluções com AWS, utilizando serviços como EC2, S3, VPC, RDS,
+                    DynamoDB, e Lightsail, aplicando boas práticas de provisionamento, segurança e escalabilidade.</p>
+                <p>Possuo conhecimento prático de pipelines de CI/CD com GitHub, controlando o versionamento com Git e
+                    colaborando via GitHub. Tenho conhecimento em Linux, utilizado como base para servidores e scripts
+                    DevOps.</p>
+            </div>
+        </section>
+
+        <section id="works" class="mb-24 scroll-mt-24" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-4xl font-bold text-white mb-8">Experiências</h2>
+            <div class="space-y-12 border-l-2 border-gray-700 ml-3">
+                <div class="relative pl-8">
+                    <div class="absolute -left-[7px] top-1 w-3 h-3 bg-cyan-400 rounded-full ring-8 ring-gray-900"></div>
+                    <h3 class="text-xl font-bold text-white">Estagiário em análise de dados e RPA</h3>
+                    <p class="text-lg font-medium text-cyan-300">Travelex Bank</p>
+                    <p class="text-sm text-gray-400">Jul 2024 - Presente</p>
+                    <div class="mt-2 prose prose-invert max-w-none text-gray-400 space-y-3">
+                        <p>Desenvolvimento de automações RPA para processos bancários e de câmbio, utilizando Python
+                            (Selenium, Requests, Pandas) e Robot Framework, com orquestração por schedulers diários.</p>
+                        <p>Integração de múltiplos sistemas via APIs REST e manipulação de arquivos estruturados (CSV,
+                            Excel), com persistência de dados em bancos relacionais como SQL Server, MySQL e SQLite.</p>
+                        <p>Criação de fluxos automatizados para cadastros e consultas, estruturando dados e otimizando
+                            consultas SQL com procedures e views reutilizáveis.</p>
+                        <p>Desenvolvimento de APIs e microsserviços com Flask e Django para integração entre sistemas,
+                            robôs e bases de dados.</p>
+                        <p>Elaboração de dashboards em Power BI com KPIs operacionais e integração via DirectQuery.</p>
+                        <p>Uso de Docker para containerização de aplicações e scripts.</p>
+                        <p>Participação em squads ágeis com foco em entregas iterativas, documentação de fluxos e
+                            desenvolvimento de back-end e front-end em projetos internos.</p>
+                    </div>
+                </div>
+                <div class="relative pl-8">
+                    <div class="absolute -left-[7px] top-1 w-3 h-3 bg-cyan-400 rounded-full ring-8 ring-gray-900"></div>
+                    <h3 class="text-xl font-bold text-white">Assistente administrativo</h3>
+                    <p class="text-lg font-medium text-cyan-300">Amil</p>
+                    <p class="text-sm text-gray-400">Fev 2023 - Mar 2024</p>
+                    <div class="mt-2 prose prose-invert max-w-none text-gray-400 space-y-3">
+                        <p>Trabalhei como Assistente Administrativo na Amil, onde automatizava processos em planilhas
+                            Excel utilizando fórmulas e macros, criava dashboards para visualização de dados e
+                            organizava documentos físicos e digitais.</p>
+                        <p>Também prestava suporte às rotinas administrativas, mantendo o controle e a atualização de
+                            informações essenciais para o bom funcionamento das operações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="scroll-mt-24" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-4xl font-bold text-white mb-8">Habilidades</h2>
+            <!-- Cloud & DevOps -->
+            <h2 class="text-xl font-semibold text-cyan-300 mt-6 mb-2">Cloud & DevOps</h2>
+            <div class="flex flex-wrap gap-3">
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">AWS</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">EC2</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Lightsail</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">S3</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">RDS</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">DynamoDB</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">CI/CD</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">API
+                    Gateway</span>
+                <span
+                    class="inline-flex items-center justify-center w-48 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Cloud
+                    Security</span>
+                <span
+                    class="inline-flex items-center justify-center w-80 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Cloud
+                    Backup and Disaster Recovery</span>
+                <span
+                    class="inline-flex items-center justify-center w-40 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Load
+                    Balancer</span>
+                <span
+                    class="inline-flex items-center justify-center w-36 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Autoscaling</span>
+            </div>
+
+
+            <!-- Automação e RPA -->
+            <h2 class="text-xl font-semibold text-cyan-300 mt-6 mb-2">Automação & RPA</h2>
+            <div class="flex flex-wrap gap-3">
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">n8n</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Selenium</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Excel</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">VBA</span>
+            </div>
+
+            <!-- Backend & API -->
+            <h2 class="text-xl font-semibold text-cyan-300 mt-6 mb-2">Backend & API</h2>
+            <div class="flex flex-wrap gap-3">
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Python</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Flask</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Django</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">FastAPI</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">REST
+                    API</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Postman</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Thunder
+                    Client</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Git</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">GitHub</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">CI/CD</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">IIS</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Docker</span>
+            </div>
+
+            <!-- Banco de Dados & Análise -->
+            <h2 class="text-xl font-semibold text-cyan-300 mt-6 mb-2">Banco de Dados & Análise</h2>
+            <div class="flex flex-wrap gap-3">
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">SQL</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">MySQL</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">PostgreSQL</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">SQL
+                    Server</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">SQLite</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">MongoDB</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Power
+                    BI</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">Excel</span>
+                <span
+                    class="inline-flex items-center justify-center w-32 bg-gray-700 text-cyan-300 text-lg font-medium px-5 py-2 rounded-lg transition-colors duration-300 hover:bg-cyan-400 hover:text-black cursor-pointer">DirectQuery</span>
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('aside nav a.nav-link');
+        const activeClasses = ['bg-gray-700', 'text-white', 'font-bold'];
+        const defaultClasses = ['text-gray-300', 'hover:bg-gray-700', 'hover:text-white'];
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const correspondingLink = document.querySelector(`aside nav a[data-section="${id}"]`);
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove(...activeClasses);
+                        link.classList.add(...defaultClasses);
+                    });
+                    correspondingLink.classList.remove(...defaultClasses);
+                    correspondingLink.classList.add(...activeClasses);
+                }
+            });
+        };
+        const observerOptions = { root: null, threshold: 0.3, rootMargin: "-30% 0px -40% 0px" };
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
+{% endblock %}
