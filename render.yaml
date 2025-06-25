@@ -21,7 +21,7 @@ services:
     startCommand: "gunicorn portfolio_project.wsgi:application"
     envVars:
       - key: DATABASE_URL
-      - fromDatabase:
+        fromDatabase:
           name: portfolio-db
           property: connectionString
       # As outras variáveis de ambiente que já conhecemos.
