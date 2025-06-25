@@ -13,7 +13,8 @@ services:
     plan: free
     rootDir: backend # <-- A LINHA MÁGICA! Avisa ao Render onde nosso projeto Django começa.
     buildCommand: |
-      pip install --no-cache-dir -r ../requirements.txt
+      pip install --no-cache-dir -r requirements.txt
+      python manage.py create_super_user 
       python manage.py collectstatic --noinput
       python manage.py migrate
     startCommand: "gunicorn portfolio_project.wsgi:application"
