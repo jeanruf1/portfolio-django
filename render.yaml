@@ -1,29 +1,33 @@
 # render.yaml
-# Define os serviços que compõem nosso projeto
 
 services:
   # Serviço 1: O Banco de Dados PostgreSQL
-  - type: pserv # 'pserv' é um serviço de banco de dados PostgreSQL
+  - type: pserv
     name: portfolio-db
     env: postgres
-    plan: free # Usa o plano gratuito do Render
-    postgresMajorVersion: 15 # Mesma versão que usamos localmente
+    plan: free
+    # A versão do postgres é inferida pelo plano gratuito.
+    # Removemos a linha 'postgresMajorVersion' que estava causando o primeiro erro.
 
   # Serviço 2: A Aplicação Web (Django)
   - type: web
     name: portfolio-web
     env: python
-    plan: free
-    # Conecta a aplicação ao banco de dados criado acima
-    database:
-      name: portfolio-db
-      username: portfolio_user # Mesmo usuário que definimos no .env
-
-    # Comandos que o Render vai executar ao construir o site
+    # Removemos a seção 'database:' daqui. A conexão é feita abaixo.
     buildCommand: |
       pip install --no-cache-dir -r requirements.txt
       python manage.py collectstatic --noinput
       python manage.py migrate
-
-    # Comando para iniciar o servidor em produção
     startCommand: "gunicorn portfolio_project.wsgi:application"
+    envVars:
+      # A forma correta e moderna de conectar o banco de dados:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: connectionString
+      # Podemos dizer ao Render para gerar uma chave segura para nós em produção:
+      - key: SECRET_KEY
+        generateValue: true
+      # É uma boa prática especificar a versão do Python
+      - key: PYTHON_VERSION
+        value: "3.11.13"
