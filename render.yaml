@@ -1,12 +1,11 @@
-# render.yaml - Versão Minimalista e Final
+# render.yaml - Versão com o tipo de serviço CORRETO
 
 services:
   # Serviço 1: O Banco de Dados PostgreSQL
-  - type: pserv
+  - type: psql # <-- A CORREÇÃO ESTÁ AQUI. 'psql' em vez de 'pserv'.
     name: portfolio-db
     plan: free
-    # Removemos a versão e a região. Deixamos o Render usar
-    # os padrões do plano gratuito, que é o que ele espera.
+    postgresMajorVersion: 15 
 
   # Serviço 2: A Aplicação Web (Django)
   - type: web
