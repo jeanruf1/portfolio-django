@@ -1,16 +1,18 @@
-# render.yaml - Versão com o tipo de serviço CORRETO
+# render.yaml - Versão com a ESTRUTURA correta
 
+# Primeiro, definimos os bancos de dados que nosso projeto precisa.
+databases:
+  - name: portfolio-db        # Um nome para o serviço do banco de dados
+    databaseName: portfolio_db  # O nome do banco de dados em si
+    user: portfolio_user      # O nome do usuário
+    plan: free                # O plano de serviço
+
+# Depois, definimos os serviços que vão rodar nosso código.
 services:
-  # Serviço 1: O Banco de Dados PostgreSQL
-  - type: psql # <-- A CORREÇÃO ESTÁ AQUI. 'psql' em vez de 'pserv'.
-    name: portfolio-db
-    plan: free
-    postgresMajorVersion: 15 
-
-  # Serviço 2: A Aplicação Web (Django)
+  # Serviço da nossa Aplicação Web (Django)
   - type: web
     name: portfolio-web
-    env: python
+    runtime: python # Usando a chave 'runtime' que é mais clara
     plan: free
     buildCommand: |
       pip install --no-cache-dir -r requirements.txt
@@ -18,11 +20,15 @@ services:
       python manage.py migrate
     startCommand: "gunicorn portfolio_project.wsgi:application"
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
+      # Conecta este serviço ao banco de dados criado acima.
+      # O Render cria a variável DATABASE_URL automaticamente.
+      - fromDatabase:
           name: portfolio-db
           property: connectionString
+      # As outras variáveis de ambiente que já conhecemos.
       - key: SECRET_KEY
         generateValue: true
       - key: PYTHON_VERSION
         value: "3.11.13"
+      - key: DEBUG # Adicione esta para garantir que o modo DEBUG esteja desativado
+        value: 0
